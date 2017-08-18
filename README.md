@@ -17,6 +17,7 @@ docker run \
 ```
 
 ```bash
-alias use_proxy='export http_proxy=http://192.168.0.112:3128 && export HTTP_PROXY="$http_proxy"'
+alias use_proxy='export http_proxy=http://192.168.0.112:3128 && \
+  export HTTP_PROXY="$http_proxy"'
 ```
 
