@@ -16,8 +16,3 @@ docker run \
   chrisoei/docker-squid
 ```
 
-```bash
-alias use_proxy='export http_proxy=http://192.168.0.112:3128 && \
-  export HTTP_PROXY="$http_proxy"'
-```
-
