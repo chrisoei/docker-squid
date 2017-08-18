@@ -1,6 +1,6 @@
 
 ```bash
-docker pull chrisoei/docker-squid
+docker pull chrisoei/squid
 ```
 
 The default cache size is only 100MB. I bumped it up to 100GB.
@@ -13,6 +13,6 @@ docker run \
   -p 3128:3128 \
   -v /var/log/squid:/var/log/squid \
   -v squid_cache:/var/spool/squid \
-  chrisoei/docker-squid
+  chrisoei/squid
 ```
 

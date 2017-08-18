@@ -1,4 +1,5 @@
 all: build
 
 build:
-	@docker build --tag=sameersbn/squid .
+	@docker build --tag=chrisoei/squid .
+	@docker push chrisoei/squid
