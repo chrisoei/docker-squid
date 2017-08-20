@@ -30,3 +30,9 @@ shell: build.log
 		chrisoei/squid \
 		/bin/bash
 
+tail:
+	tail -f /var/log/squid/access.log
+
+du:
+	sudo du -sm /var/lib/docker/volumes/squid_cache
+
