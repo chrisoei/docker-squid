@@ -1,7 +1,11 @@
 all: build
 
-build: Dockerfile entrypoint.sh Makefile squid.conf
-	docker build --label build=`stardate` --tag=chrisoei/squid .
+build: Dockerfile entrypoint.sh Makefile squid.conf .git/refs/heads/master
+	docker build \
+		--label build=`stardate` \
+		--label commit_hash=`git rev-parse HEAD` \
+		--tag=chrisoei/squid \
+		.
 
 push: build
 	docker push chrisoei/squid
