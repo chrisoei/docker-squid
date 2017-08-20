@@ -1,12 +1,12 @@
 all: build
 
-build:
+build: Dockerfile entrypoint.sh Makefile squid.conf
 	docker build --label build=`stardate` --tag=chrisoei/squid .
 
-push:
+push: build
 	docker push chrisoei/squid
 
-run:
+run: build
 	docker run \
 		--name squid \
 		-d \
