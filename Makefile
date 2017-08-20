@@ -1,16 +1,16 @@
-all: build
+all: build.log
 
-build: Dockerfile entrypoint.sh Makefile squid.conf .git/refs/heads/master
+build.log: Dockerfile entrypoint.sh Makefile squid.conf .git/refs/heads/master
 	docker build \
 		--label build=`stardate` \
 		--label commit_hash=`git rev-parse HEAD` \
 		--tag=chrisoei/squid \
-		.
+		. 2>&1 | tee build.log
 
-push: build
+push: build.log
 	docker push chrisoei/squid
 
-run: build
+run: build.log
 	docker run \
 		--name squid \
 		-d \
@@ -19,4 +19,14 @@ run: build
 		-v /var/log/squid:/var/log/squid \
 		-v squid_cache:/var/spool/squid \
 		chrisoei/squid
+
+shell: build.log
+	docker run \
+		--name squid \
+		-it \
+		--rm \
+		-v /var/log/squid:/var/log/squid \
+		-v squid_cache:/var/spool/squid \
+		chrisoei/squid \
+		/bin/bash
 

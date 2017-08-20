@@ -1,0 +1,33 @@
+Sending build context to Docker daemon  293.9kB
+Step 1/10 : FROM ubuntu
+ ---> ccc7a11d65b1
+Step 2/10 : RUN apt-get update
+ ---> Using cache
+ ---> e2f7bf5547ab
+Step 3/10 : ENV DEBIAN_FRONTEND noninteractive SQUID_CACHE_DIR /var/spool/squid SQUID_LOG_DIR /var/log/squid SQUID_USER proxy
+ ---> Using cache
+ ---> da011ee98036
+Step 4/10 : RUN apt-get install -y squid &&     mv /etc/squid/squid.conf /etc/squid/squid.conf.dist &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> ba9f81b7b7f3
+Step 5/10 : COPY squid.conf /etc/squid/squid.conf
+ ---> Using cache
+ ---> e45b5067b4eb
+Step 6/10 : COPY entrypoint.sh /sbin/entrypoint.sh
+ ---> Using cache
+ ---> db2c0661d840
+Step 7/10 : RUN chmod 755 /sbin/entrypoint.sh
+ ---> Using cache
+ ---> 9b3f9f33dee5
+Step 8/10 : EXPOSE 3128/tcp
+ ---> Using cache
+ ---> 40e7e9fd53e8
+Step 9/10 : ENTRYPOINT /sbin/entrypoint.sh
+ ---> Using cache
+ ---> 3fb0f7746b8b
+Step 10/10 : LABEL build '2017.635149315442504' commit_hash '0e4a28dda77fd0fcaee9262685f307b02d68156c'
+ ---> Running in a481d16da073
+ ---> d99a8e97de4c
+Removing intermediate container a481d16da073
+Successfully built d99a8e97de4c
+Successfully tagged chrisoei/squid:latest
