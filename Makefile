@@ -8,6 +8,8 @@ build.log: Dockerfile entrypoint.sh Makefile squid.conf .git/refs/heads/master
 		. 2>&1 | tee build.log
 
 push: build.log
+	git push github
+	git push bitbucket
 	docker push chrisoei/squid
 
 run: build.log
@@ -31,6 +33,9 @@ shell: build.log
 		/bin/bash
 
 tail:
+ifeq ($(TERM),screen-256color)
+	tmux rename-window squid-log
+endif
 	tail -f /var/log/squid/access.log
 
 du:
